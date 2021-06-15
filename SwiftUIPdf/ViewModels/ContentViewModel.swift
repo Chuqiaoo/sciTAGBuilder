@@ -14,13 +14,13 @@ class ContentViewModel : ObservableObject {
 
     
     //cgong
-    var type : String {
+    var labelType : String {
         
-        get { content.type }
+        get { content.labelType }
         
-        set (newType) {
+        set (newLabelType) {
             
-            content.type = newType
+            content.labelType = newLabelType
         }
     }
 
@@ -72,7 +72,7 @@ extension ContentViewModel {
     
     func clear(){
         
-        self.type = ""
+        self.labelType = ""
         //cgong
         self.date = ""
         self.sampleName = ""
@@ -85,14 +85,12 @@ extension ContentViewModel {
     
     
     func pdfData() -> Data? {
-        
-        return PdfCreator().pdfData(type: self.type, date: self.date, sampleName:self.sampleName, user: self.user, moreInfo: self.moreInfo)
-    }
-    
+          return PdfCreator().pdfData( labelType: self.labelType, date: self.date, sampleName:self.sampleName, user: self.user, moreInfo: self.moreInfo)
+      }
+      
     func pdfDoc() -> PDFDocument? {
-        
-        let pdfCreator = PdfCreator()
-        return pdfCreator.pdfDoc(type: self.type, date: self.date, sampleName:self.sampleName, user: self.user, moreInfo: self.moreInfo)
-    }
+          let pdfCreator = PdfCreator()
+          return pdfCreator.pdfDoc( labelType: self.labelType, date: self.date, sampleName:self.sampleName, user: self.user, moreInfo: self.moreInfo)
+      }
     
 }

@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
+    var types = ["Cryotubes", "Other Freezer labels", "More options to be added"]
+    @State private var labelIndex = 0
+      
+    
     @EnvironmentObject private var contentViewModel : ContentViewModel
    
     
@@ -34,7 +38,11 @@ extension ContentView {
         
         Form {
     
-            TextField("Label type", text: $contentViewModel.type )
+            Picker("Label Type", selection: $contentViewModel.labelType) {
+                                   ForEach(types, id: \.self) {
+                                       Text($0)
+                                   }
+                               }
             
             //cgong
             TextField("Date", text: $contentViewModel.date)

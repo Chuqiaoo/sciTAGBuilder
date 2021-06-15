@@ -10,7 +10,7 @@ import Foundation
 
 struct Content {
     
-    var type : String = ""
+    var labelType : String = ""
     
     //cgong
     var date : String = ""

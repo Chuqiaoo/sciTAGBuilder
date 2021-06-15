@@ -43,12 +43,12 @@ class PdfCreator : NSObject {
 
 extension PdfCreator {
     
-    private func addType ( type  : String ){
+    private func addLabelType ( labelType  : String ){
         
-        let typeRect = CGRect(x: 20, y: 20, // top margin
+        let labelTypeRect = CGRect(x: 20, y: 20, // top margin
                               width: pageRect.width - 40 ,height: 40)
 
-        type.draw(in: typeRect, withAttributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 30)])
+        labelType.draw(in: labelTypeRect, withAttributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 30)])
       
     }
     
@@ -100,7 +100,7 @@ extension PdfCreator {
 
 extension PdfCreator {
     
-    func pdfData( type : String, date: String, sampleName: String, user: String, moreInfo: String ) -> Data? {
+    func pdfData( labelType : String, date: String, sampleName: String, user: String, moreInfo: String ) -> Data? {
         
         if let renderer = self.renderer {
        
@@ -108,7 +108,7 @@ extension PdfCreator {
                 
                 ctx.beginPage()
                 
-                addType(type: "Type: " + type)
+                addLabelType(labelType: "Label Type: " + labelType)
                 
                 //cgong
                 addDate(date: "Date: " + date)
@@ -132,9 +132,9 @@ extension PdfCreator {
 
 extension PdfCreator {
     
-    func pdfDoc( type : String, date: String, sampleName: String, user: String, moreInfo: String ) -> PDFDocument? {
+    func pdfDoc( labelType : String, date: String, sampleName: String, user: String, moreInfo: String ) -> PDFDocument? {
         
-        if let data = self.pdfData(type: type, date: date, sampleName: sampleName, user: user,  moreInfo: moreInfo){
+        if let data = self.pdfData(labelType: labelType, date: date, sampleName: sampleName, user: user,  moreInfo: moreInfo){
             
             return PDFDocument(data: data)
         }
